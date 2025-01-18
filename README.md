@@ -137,13 +137,17 @@ Si se define `expiration` en la creación del link, cualquier intento de redirec
 ## Ejemplo de Flujo Completo
 
 1. **Crear** un enlace corto:
+
 POST /create
 ```bash
-{
-  "url": "https://fierastudio.com",
-  "password": "123",
-  "expiration": "2025-01-01"
-}
+curl -X POST \
+  http://localhost:8080/create \
+  -H "Content-Type: application/json" \
+  -d '{
+    "url": "https://fierastudio.com",
+    "password": "123",
+    "expiration": "2025-02-01"
+  }'
 ```
 Respuesta:
 ```bash
@@ -155,11 +159,16 @@ Respuesta:
 ```
 
 2. **Redirigir** (con contraseña):
-GET `/l/aBsJu?password=123`
+```bash
+GET curl -X GET "http://localhost:8080/l/aBsJu?password=123"
+```
 Redirige a la URL original si todo es correcto.
 
 3. **Ver estadísticas**:
-GET `/l/aBsJu/stats`
+
+```bash
+GET curl -X GET http://localhost:8080/l/aBsJu/stats
+```
 Respuesta:
 ```bash
 {
@@ -169,7 +178,9 @@ Respuesta:
 ```
 
 4. **Invalidar** el enlace:
-PUT `/l/aBsJu`
+```bash
+PUT curl -X GET http://localhost:8080/l/aBsJu
+```
 Respuesta:
 ```bash
 {
@@ -182,6 +193,6 @@ Con esto, el enlace dejará de funcionar en redirecciones futuras.
 
 ## Tecnologías Usadas
 - **NestJS**: Framework para Node.js, basado en TypeScript.
-- **Mongoose**: Para persistencia en MongoDB (opcional según tu implementación).
+- **Mongoose**: Para persistencia en MongoDB.
 - **bcrypt**: Para hashear y validar la contraseña del enlace.
 - **nanoid**: Para generar identificadores cortos y únicos.
