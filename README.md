@@ -1,38 +1,14 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Link Tracker API
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Este proyecto consiste en una API que permite acortar o enmascarar URLs, validar enlaces protegidos con contraseña y controlar la expiración y el conteo de visitas de cada enlace.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
-
-## Description
-
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-
-## Project setup
+## Setup
 
 ```bash
 $ pnpm install
 ```
 
-## Compile and run the project
+## Como compilar y ejecutar el proyecto
 
 ```bash
 # development
@@ -45,55 +21,167 @@ $ pnpm run start:dev
 $ pnpm run start:prod
 ```
 
-## Run tests
+## Deploy URL
 
-```bash
-# unit tests
-$ pnpm run test
+- https://link-tracker-47ut.onrender.com
 
-# e2e tests
-$ pnpm run test:e2e
-
-# test coverage
-$ pnpm run test:cov
-```
-
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
-
-```bash
-$ pnpm install -g mau
-$ mau deploy
-```
-
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
 
 ## Resources
 
-Check out a few resources that may come in handy when working with NestJS:
+- [NestJS Documentation](https://docs.nestjs.com)
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+## Endpoints
 
-## Support
+### POST `/create`
+**Descripción**: Crea un nuevo link a partir de una URL válida.  
+**Cuerpo de la petición (JSON)**:  
+- `url` (string, requerido): URL de destino original.  
+- `password` (string, opcional): Contraseña que se deberá pasar como query param en la redirección.  
+- `expiration` (Date, opcional): Fecha de expiración para el link.  
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+**Ejemplo de petición**:
 
-## Stay in touch
+POST /create
+Content-Type: application/json
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+```bash
+{
+  "url": "https://example.com",
+  "password": "12345",
+  "expiration": "2025-12-31"
+}
+```
 
-## License
+**Ejemplo de respuesta (JSON)**:
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+```bash
+{
+  "target": "https://example.com",
+  "link": "aBsJu",
+  "valid": true
+}
+```
+
+### GET `/l/:id`
+**Descripción**: Redirige al URL original, siempre y cuando el link sea válido.  
+
+**Parámetros**:  
+- `:id`: Identificador corto del link.  
+- `?password=...`: Query param opcional para validar la contraseña (si el link está protegido).  
+
+**Proceso**:
+1. Busca el link en la base de datos.
+2. Verifica si `valid` es `true`.
+3. Verifica si existe una fecha de expiración y si ya caducó.
+4. Si tiene contraseña almacenada, compara con la contraseña provista en `?password`.
+5. Incrementa el contador de visitas.
+6. Redirige a la URL original.
+
+**Ejemplo de solicitud**:
+GET `/l/aBsJu?password=123`
+
+**Comportamiento**:
+- Retorna un **404 Not Found** si el link no existe, está inválido, expiró o si la contraseña es incorrecta.
+- Redirige a la URL original en caso de éxito.
+
+### GET `/l/:id/stats`
+
+**Descripción**: Devuelve estadísticas del enlace.  
+
+**Parámetros**:
+- `:id`: Identificador corto del link.
+
+**Respuesta (JSON)**:
+```bash
+{
+  "link": "http://localhost:8080/l/aBsJu",
+  "visitCount": 10
+}
+```
+
+- `link`: El shortId del enlace.
+- `visitCount`: Cantidad de veces que se redirigió correctamente.
+
+### PUT /l/:id
+**Descripción**: Invalida un link existente.  
+**Parámetros**:
+- `:id`: Identificador corto del link a invalidar.
+
+**Proceso**:
+1. Verifica que el link exista.
+2. Actualiza el campo `valid` a `false`.
+
+**Ejemplo de respuesta (JSON)**:
+```bash
+{
+  "link": "http://localhost:8080/l/aBsJu",
+  "valid": false
+}
+```
+
+## Flujo de Uso
+1. **Creación** (`POST /create`): Se envía la URL objetivo (y opcionalmente la contraseña y la fecha de expiración).
+2. **Redirección** (`GET /l/:id`): Se visita el shortId. Si requiere contraseña, se pasa `?password=XXX`. El servicio valida, incrementa visitas y redirige.
+3. **Estadísticas** (`GET /l/:id/stats`): Muestra cuántas veces se accedió al link.
+4. **Invalidar** (`PUT /l/:id`): Cambia el estado del link a inválido para que no permita más redirecciones.
+
+## Sobre la Contraseña
+Si al momento de la creación se añade una `password`, el usuario debe proporcionar el mismo valor como query param en la llamada a la redirección:
+GET `/l/aBsJu?password=12345`
+
+Si la contraseña no coincide, o no se envía (y el link estaba protegido), se genera un error `404 Not Found`.
+
+## Sobre la Expiración
+Si se define `expiration` en la creación del link, cualquier intento de redirección luego de la fecha/hora establecida resultará en `404 Not Found`.
+
+## Ejemplo de Flujo Completo
+
+1. **Crear** un enlace corto:
+POST /create
+```bash
+{
+  "url": "https://fierastudio.com",
+  "password": "123",
+  "expiration": "2025-01-01"
+}
+```
+Respuesta:
+```bash
+{
+  "target": "https://fierastudio.com",
+  "link": "http://localhost:8080/l/aBsJu",
+  "valid": true
+}
+```
+
+2. **Redirigir** (con contraseña):
+GET `/l/aBsJu?password=123`
+Redirige a la URL original si todo es correcto.
+
+3. **Ver estadísticas**:
+GET `/l/aBsJu/stats`
+Respuesta:
+```bash
+{
+  "link": "http://localhost:8080/l/aBsJu",
+  "visitCount": 5
+}
+```
+
+4. **Invalidar** el enlace:
+PUT `/l/aBsJu`
+Respuesta:
+```bash
+{
+  "link": "http://localhost:8080/l/aBsJu",
+  "valid": false
+}
+```
+
+Con esto, el enlace dejará de funcionar en redirecciones futuras.
+
+## Tecnologías Usadas
+- **NestJS**: Framework para Node.js, basado en TypeScript.
+- **Mongoose**: Para persistencia en MongoDB (opcional según tu implementación).
+- **bcrypt**: Para hashear y validar la contraseña del enlace.
+- **nanoid**: Para generar identificadores cortos y únicos.
