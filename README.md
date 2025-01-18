@@ -182,6 +182,6 @@ Con esto, el enlace dejará de funcionar en redirecciones futuras.
 
 ## Tecnologías Usadas
 - **NestJS**: Framework para Node.js, basado en TypeScript.
-- **Mongoose**: Para persistencia en MongoDB (opcional según tu implementación).
+- **Mongoose**: Para persistencia en MongoDB.
 - **bcrypt**: Para hashear y validar la contraseña del enlace.
 - **nanoid**: Para generar identificadores cortos y únicos.
