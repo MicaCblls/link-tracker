@@ -1,4 +1,4 @@
-import { Body, Controller, Post} from '@nestjs/common';
+import { Body, Controller, Post, UnprocessableEntityException } from '@nestjs/common';
 import { CreateLinkDto } from './dto/create-link.dto';
 import { LinksService } from './links.service';
 
@@ -8,12 +8,16 @@ export class LinksController {
 
     @Post('create')
     async create(@Body() createLinkDto: CreateLinkDto) {
-        const newLink = await this.linksService.createLink(createLinkDto);
+        try {
+            const newLink = await this.linksService.createLink(createLinkDto);
 
-        return {
-            target: newLink.target,
-            link: newLink.link,
-            valid: newLink.valid
+            return {
+                target: newLink.target,
+                link: newLink.link,
+                valid: newLink.valid
+            }
+        } catch (error) {
+            throw new UnprocessableEntityException('Server error')
         }
     }
 }

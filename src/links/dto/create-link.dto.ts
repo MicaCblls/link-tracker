@@ -16,7 +16,7 @@ export class CreateLinkDto {
     link: string;
 
     @IsOptional()
-    @IsNotEmpty()//!??
+    @IsNotEmpty()
     password?: string;
 
     @IsNotEmpty()
