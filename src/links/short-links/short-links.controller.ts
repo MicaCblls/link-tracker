@@ -27,7 +27,6 @@ export class ShortLinksController {
             }
 
             const isMatch = await this.linksService.validatePassword(password, foundURL.password)
-            console.log(isMatch, typeof password);
             
             if (!isMatch) {
                 throw new NotFoundException('Password incorrecta');
