@@ -18,7 +18,7 @@ export class ShortLinksController {
         }
 
         if (foundURL.expiration && new Date() > foundURL.expiration) {
-            throw new NotFoundException('Link inválido');
+            throw new NotFoundException('El link ha expirado');
         }
 
         if (foundURL.password) {
