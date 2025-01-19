@@ -1,6 +1,6 @@
 # Link Tracker API
 
-Este proyecto consiste en una API que permite acortar o enmascarar URLs, validar enlaces protegidos con contraseña y controlar la expiración y el conteo de visitas de cada enlace.
+Este proyecto consiste en una API que permite enmascarar URLs, validar enlaces protegidos con contraseña y controlar la expiración y el conteo de visitas de cada enlace.
 
 ## Setup
 
