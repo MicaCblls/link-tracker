@@ -45,17 +45,17 @@ export class LinksService {
         return createdLink.save();
     }
 
-    async findURLByShortId(shortId: string) {
+    async findURLByShortId(shortId: string): Promise<TLinkSchema> {
         const foundURL = await this.linkModel.findOne({ shortId })
 
         return foundURL
     }
 
-    async updateStats(shortId: string) {
+    async updateStats(shortId: string): Promise<void> {
         await this.linkModel.updateOne({ shortId }, { $inc: { visitCount: 1 } })
     }
 
-    async validatePassword(password: string, dbPassword: string) {
+    async validatePassword(password: string, dbPassword: string): Promise<boolean> {
         const passMatch = await bcrypt.compare(password, dbPassword);
 
         return passMatch
